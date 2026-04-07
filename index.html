@@ -1,0 +1,734 @@
+<?php
+$serverName = $_SERVER['SERVER_SOFTWARE'] ?? 'Serveur Linux';
+$date = date('d/m/Y H:i');
+$year = date('Y');
+$userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'Inconnu';
+
+}s
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Présentation des Serveurs Web - SW1</title>
+
+<!-- Tailwind (local) -->
+<link rel="stylesheet" href="dist/output.css">
+
+<!-- Icons -->
+<link rel="stylesheet" href="assets/icons/fontawesome.css">
+
+<!-- Font -->
+<link rel="stylesheet" href="assets/fonts/opensans.css">
+
+<style>
+body { font-family: 'Open Sans', sans-serif; }
+.page { display: none; }
+.page.active { display: block; }
+.glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
+.nav-active { color: #4ade80; }
+</style>
+</head>
+
+<body class="bg-slate-900 text-slate-100">
+
+<!-- HEADER -->
+<header class="bg-gradient-to-r from-slate-900 to-slate-800 border-b border-slate-700">
+  <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <i class="fab fa-linux text-green-400 text-3xl"></i>
+      <span class="text-xl font-bold">Web Servers Presentation</span>
+    </div>
+    <nav class="space-x-6 text-sm md:text-base">
+      <button data-nav="home" onclick="showPage('home')" class="hover:text-green-400">Accueil</button>
+      <button data-nav="tutorials" onclick="showPage('tutorials')" class="hover:text-green-400">Tutoriels</button>
+      <button data-nav="docs" onclick="showPage('docs')" class="hover:text-green-400">Documentation</button>
+      <button data-nav="compare" onclick="showPage('compare')" class="hover:text-green-400">Comparatifs</button>
+      <button data-nav="contact" onclick="showPage('contact')" class="hover:text-green-400">Contact</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ACCUEIL -->
+<section id="home" class="page active">
+  <div class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <h1 class="text-4xl font-bold leading-tight">
+        Présentation des Serveurs Web
+        <span class="text-green-400">Étudiés en Théorie</span>
+      </h1>
+      <p class="mt-6 text-slate-300">
+        Site web dynamique présentant de manière interactive les différents types de serveurs web :
+        Apache, IIS, NGINX, NetWare et GWS.
+      </p>
+
+      <div class="mt-8 flex gap-4">
+  <button onclick="showPage('compare')"
+          class="bg-green-500 text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-green-400 transition">
+    Voir les comparatifs
+  </button>
+
+  <button onclick="showPage('tutorials')"
+          class="border border-green-500 px-6 py-3 rounded-lg hover:bg-green-500 hover:text-slate-900 transition">
+    Tutoriels
+  </button>
+</div>
+
+
+      <p class="mt-6 text-sm text-slate-400">
+        Technologies : HTML5, CSS3, JavaScript, PHP
+      </p>
+    </div>
+
+    <div id="hero-tilt-wrap" class="rounded-xl shadow-xl overflow-hidden">
+    <img id="hero-tilt"
+         src="assets/images/hero.jpg"
+         class="block w-full h-auto transition duration-200"
+         alt="Serveur Linux"
+         loading="lazy"
+         referrerpolicy="no-referrer">
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 pb-16 grid md:grid-cols-4 gap-6">
+    <div class="glass border border-slate-700 p-6 rounded-xl reveal">
+      <p class="text-3xl font-bold text-green-400">12h</p>
+      <p class="text-slate-300 mt-2">parcours guidé</p>
+    </div>
+    <div class="glass border border-slate-700 p-6 rounded-xl reveal">
+      <p class="text-3xl font-bold text-green-400">15+</p>
+      <p class="text-slate-300 mt-2">exercices pratiques</p>
+    </div>
+    <div class="glass border border-slate-700 p-6 rounded-xl reveal">
+      <p class="text-3xl font-bold text-green-400">5</p>
+      <p class="text-slate-300 mt-2">serveurs comparés</p>
+    </div>
+    <div class="glass border border-slate-700 p-6 rounded-xl reveal">
+      <p class="text-3xl font-bold text-green-400">SSL</p>
+      <p class="text-slate-300 mt-2">bonnes pratiques</p>
+    </div>
+  </div>
+</section>
+
+<!-- TUTORIELS -->
+<section id="tutorials" class="page">
+  <div class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-bold mb-12 text-green-400">
+      Tutoriels – Déploiement d’un serveur Web sous Linux
+    </h2>
+
+    <div class="space-y-16">
+
+      <!-- Tutoriel 1 -->
+      <div class="bg-slate-800 p-10 rounded-xl reveal">
+        <h3 class="text-2xl font-semibold mb-6">
+          1. Installer Apache sur Ubuntu
+        </h3>
+
+        <img src="assets/images/ubuntu-terminal.png"
+             alt="Terminal Ubuntu"
+             class="rounded-lg mb-6 mx-auto"
+             loading="lazy"
+             referrerpolicy="no-referrer">
+
+        <p class="text-slate-300 mb-4">
+          Apache HTTP Server est l’un des serveurs web les plus utilisés.
+          Il permet d’héberger des sites web accessibles via un navigateur.
+        </p>
+
+        <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+sudo apt update
+sudo apt install apache2 -y
+sudo systemctl start apache2
+sudo systemctl enable apache2
+        </pre>
+
+        <p class="text-slate-400 mt-4">
+          Après l’installation, Apache écoute par défaut sur le port 80.
+          L’accès se fait via l’adresse IP de la machine Ubuntu.
+        </p>
+      </div>
+
+      <!-- Tutoriel 2 -->
+      <div class="bg-slate-800 p-10 rounded-xl reveal">
+        <h3 class="text-2xl font-semibold mb-6">
+          2. Tester le serveur Web
+        </h3>
+
+        <img src="assets/images/apache-default.png"
+             alt="Page Apache Ubuntu"
+             class="rounded-lg mb-6 mx-auto"
+             loading="lazy"
+             referrerpolicy="no-referrer">
+
+        <p class="text-slate-300 mb-4">
+          Pour vérifier le bon fonctionnement du serveur, ouvrez un navigateur
+          et entrez l’adresse IP de la machine Ubuntu :
+        </p>
+
+        <pre class="bg-black p-4 rounded text-green-400 text-sm">
+http://ADRESSE_IP_SERVEUR
+        </pre>
+
+        <p class="text-slate-400 mt-4">
+          L’apparition de la page par défaut Apache confirme que le serveur est opérationnel.
+        </p>
+      </div>
+
+      <!-- Tutoriel 3 -->
+      <div class="bg-slate-800 p-10 rounded-xl reveal">
+        <h3 class="text-2xl font-semibold mb-6">
+          3. Héberger un site web sous Ubuntu
+        </h3>
+
+        <img src="assets/images/linux-fs.png"
+             alt="Système de fichiers Linux"
+             class="rounded-lg mb-6 mx-auto"
+             loading="lazy"
+             referrerpolicy="no-referrer">
+
+        <p class="text-slate-300 mb-4">
+          Le dossier par défaut des sites web Apache est :
+        </p>
+
+        <pre class="bg-black p-4 rounded text-green-400 text-sm">
+/var/www/html
+        </pre>
+
+        <p class="text-slate-300 mb-4">
+          Pour remplacer la page par défaut par votre propre site :
+        </p>
+
+        <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+sudo rm /var/www/html/index.html
+sudo nano /var/www/html/index.html
+        </pre>
+
+        <p class="text-slate-400 mt-4">
+          Insérez votre code HTML puis sauvegardez.
+        </p>
+      </div>
+
+      <!-- Tutoriel 4 -->
+      <div class="bg-slate-800 p-10 rounded-xl reveal">
+        <h3 class="text-2xl font-semibold mb-6">
+          4. Transfert du site web depuis Windows vers Ubuntu (VM)
+        </h3>
+
+        <img src="assets/images/virtualbox.png"
+             alt="VirtualBox"
+             class="rounded-lg mb-6 mx-auto"
+             loading="lazy"
+             referrerpolicy="no-referrer">
+
+        <p class="text-slate-300 mb-4">
+          Le site web est développé sur la machine hôte Windows.
+          Il doit être transféré vers la machine virtuelle Ubuntu.
+        </p>
+
+        <h4 class="text-xl font-semibold mt-6 mb-2 text-green-300">
+          Méthode 1 : Dossier partagé (recommandée)
+        </h4>
+
+        <p class="text-slate-300 mb-4">
+          Dans VirtualBox, configurez un dossier partagé entre Windows et Ubuntu.
+        </p>
+
+        <pre class="bg-black p-4 rounded text-green-400 text-sm">
+/media/sf_nom_du_dossier
+        </pre>
+
+        <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+sudo cp -r /media/sf_siteweb/* /var/www/html/
+sudo chown -R www-data:www-data /var/www/html
+        </pre>
+
+        <h4 class="text-xl font-semibold mt-6 mb-2 text-green-300">
+          Méthode 2 : SCP (ligne de commande)
+        </h4>
+
+        <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+scp -r siteweb utilisateur@IP_UBUNTU:/var/www/html
+        </pre>
+      </div>
+
+      <!-- Tutoriel 5 -->
+      <div class="bg-slate-800 p-10 rounded-xl reveal">
+        <h3 class="text-2xl font-semibold mb-6">
+          5. Conclusion du tutoriel
+        </h3>
+
+        <p class="text-slate-300">
+          À travers ces étapes, nous avons mis en place un serveur web fonctionnel
+          sous Linux Ubuntu, hébergé un site web et assuré le transfert des fichiers
+          depuis la machine hôte Windows vers la machine virtuelle.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- DOCUMENTATION -->
+<section id="docs" class="page">
+  <div class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-bold mb-10 text-green-400">Documentation Technique</h2>
+    <div class="bg-slate-800 p-8 rounded-xl space-y-6 mb-10 reveal">
+      <h3 class="text-2xl font-semibold text-white">Mise en place d’une solution</h3>
+
+      <div class="space-y-4 text-slate-300">
+        <h4 class="text-xl font-semibold text-green-300"></h4>
+        <p> 
+        </p>
+
+        <h4 class="text-xl font-semibold text-green-300">Préparation de l’installation d’Ubuntu sur VMware</h4>
+        <ul class="list-disc pl-6">
+          <li>Télécharger l’ISO d’Ubuntu (version LTS recommandée).</li>
+          <li>Créer une nouvelle VM VMware (2 CPU, 4 Go RAM, 20 Go disque).</li>
+          <li>Configurer le réseau en mode “Bridged” pour un accès direct.</li>
+          <li>Installer Ubuntu puis mettre à jour le système après le premier démarrage.</li>
+        </ul>
+
+        <h4 class="text-xl font-semibold text-green-300">Configuration du serveur (Apache2)</h4>
+        <p class="text-slate-400"> Mise à jour du système</p>
+        <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+sudo apt update
+sudo apt upgrade -y
+        </pre>
+
+        <p class="text-slate-400"> Installation d’Apache2</p>
+        <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+sudo apt install apache2 -y
+sudo systemctl enable apache2
+sudo systemctl start apache2
+        </pre>
+
+        <p class="text-slate-400">Configuration du pare-feu</p>
+        <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+sudo ufw allow 'Apache Full'
+sudo ufw enable
+sudo ufw status
+        </pre>
+
+        <h4 class="text-xl font-semibold text-green-300">Configuration du site web</h4>
+        <p class="text-slate-400">Autorisation du contenu</p>
+        <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+sudo chown -R www-data:www-data /var/www/html
+sudo chmod -R 755 /var/www/html
+        </pre>
+
+        <p class="text-slate-400">Déplacer le dossier du site web</p>
+        <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+sudo rm -rf /var/www/html/*
+sudo cp -r /chemin/vers/site/* /var/www/html/
+        </pre>
+
+        <p class="text-slate-400">Configuration dans le terminal</p>
+        <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+sudo nano /etc/apache2/sites-available/000-default.conf
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+        </pre>
+
+        <h4 class="text-xl font-semibold text-green-300"> Test dans le navigateur et avec un nom de domaine</h4>
+        <ul class="list-disc pl-6">
+          <li>Ouvrir `http://IP_DU_SERVEUR` pour valider l’accès local.</li>
+          <li>Associer un domaine via un enregistrement DNS de type A vers l’IP.</li>
+          <li>Tester `http://votre-domaine.tld` après propagation DNS.</li>
+        </ul>
+
+        <h4 class="text-xl font-semibold text-green-300">Conclusion</h4>
+        <p>
+          Le serveur web est opérationnel, le site est déployé et accessible via
+          l’adresse IP et un nom de domaine configuré.
+        </p>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="bg-slate-800 p-8 rounded-xl space-y-6 mb-10 reveal">
+      <h3 class="text-2xl font-semibold text-white">1. Architecture Client – Serveur</h3>
+      <p class="text-slate-300">
+        L’architecture client-serveur est le modèle fondamental du Web.  
+        Le <strong>client</strong> (navigateur web) envoie une requête HTTP vers un
+        <strong>serveur web</strong> qui traite cette requête et renvoie une réponse.
+      </p>
+
+      <div class="bg-black p-4 rounded text-green-400 text-sm font-mono">
+        Client (Navigateur) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;│ Requête HTTP <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;▼ <br>
+        Serveur Web (Apache / Nginx) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;│ Réponse HTTP <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;▼ <br>
+        Client (Affichage de la page)
+      </div>
+
+      <p class="text-slate-400">
+        Ce modèle garantit la séparation entre l’interface utilisateur et le traitement serveur.
+      </p>
+    </div>
+
+    <!-- HTTP -->
+    <div class="bg-slate-800 p-8 rounded-xl space-y-6 mb-10 reveal">
+      <h3 class="text-2xl font-semibold text-white">2. Le protocole HTTP</h3>
+      <p class="text-slate-300">
+        HTTP (HyperText Transfer Protocol) est le protocole utilisé pour la communication
+        entre le client et le serveur web.
+      </p>
+
+      <ul class="list-disc pl-6 text-slate-300">
+        <li><strong>GET</strong> : demander une ressource (page web)</li>
+        <li><strong>POST</strong> : envoyer des données au serveur</li>
+        <li><strong>PUT</strong> : mettre à jour une ressource</li>
+        <li><strong>DELETE</strong> : supprimer une ressource</li>
+      </ul>
+
+      <p class="text-slate-400">
+        Les réponses HTTP contiennent un code de statut (200, 404, 500…) indiquant le résultat de la requête.
+      </p>
+    </div>
+
+    <!-- INSTALLATION APACHE -->
+    <div class="bg-slate-800 p-8 rounded-xl space-y-6 mb-10 reveal">
+      <h3 class="text-2xl font-semibold text-white">3. Installation d’Apache sous Linux</h3>
+
+      <p class="text-slate-300">
+        Apache HTTP Server est l’un des serveurs web les plus utilisés sous Linux.
+        Son installation se fait via le gestionnaire de paquets.
+      </p>
+
+      <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+# Mise à jour du système
+sudo apt update
+
+# Installation d'Apache
+sudo apt install apache2
+
+# Démarrage du service Apache
+sudo systemctl start apache2
+
+# Activation au démarrage
+sudo systemctl enable apache2
+      </pre>
+
+      <p class="text-slate-400">
+        Après installation, Apache est accessible par défaut via l’adresse
+        <strong>http://localhost</strong> ou l’adresse IP du serveur.
+      </p>
+    </div>
+
+    <!-- STRUCTURE -->
+    <div class="bg-slate-800 p-8 rounded-xl space-y-6 mb-10 reveal">
+      <h3 class="text-2xl font-semibold text-white">4. Structure des fichiers Apache</h3>
+
+      <p class="text-slate-300">
+        Apache utilise une organisation de fichiers standard sous Linux :
+      </p>
+
+      <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+/etc/apache2/
+├── apache2.conf
+├── ports.conf
+├── sites-available/
+├── sites-enabled/
+/var/www/html/
+      </pre>
+
+      <ul class="list-disc pl-6 text-slate-300">
+        <li><strong>/etc/apache2</strong> : fichiers de configuration</li>
+        <li><strong>sites-available</strong> : configurations des sites</li>
+        <li><strong>sites-enabled</strong> : sites actifs</li>
+        <li><strong>/var/www/html</strong> : dossier par défaut du site web</li>
+      </ul>
+    </div>
+
+    <!-- SÉCURITÉ -->
+    <div class="bg-slate-800 p-8 rounded-xl space-y-6 reveal">
+      <h3 class="text-2xl font-semibold text-white">5. Sécurité du serveur web</h3>
+
+      <p class="text-slate-300">
+        La sécurisation d’un serveur web est essentielle pour protéger les données
+        et garantir la disponibilité du service.
+      </p>
+
+      <ul class="list-disc pl-6 text-slate-300">
+        <li>Activation du pare-feu (UFW)</li>
+        <li>Utilisation du protocole HTTPS (SSL/TLS)</li>
+        <li>Mise à jour régulière du système</li>
+        <li>Restriction des permissions fichiers</li>
+      </ul>
+
+      <pre class="bg-black p-4 rounded text-green-400 text-sm overflow-x-auto">
+# Autoriser Apache dans le pare-feu
+sudo ufw allow 'Apache Full'
+
+# Vérifier l'état du pare-feu
+sudo ufw status
+      </pre>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPARATIFS -->
+<section id="compare" class="page">
+  <div class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-bold mb-10 text-green-400">
+      Comparatif des Serveurs Web
+    </h2>
+
+    <div class="space-y-12">
+
+      <!-- Apache -->
+      <div class="bg-slate-800 p-8 rounded-xl reveal">
+        <h3 class="text-2xl font-semibold mb-4">Apache HTTP Server</h3>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <img src="assets/icons/apache.svg"
+               alt="Apache"
+               class="h-28 mx-auto transition duration-300 hover:scale-110 hover:drop-shadow-lg"
+               loading="lazy"
+               referrerpolicy="no-referrer">
+          <div class="text-slate-300 space-y-2">
+            <p><strong>Performance :</strong> Moyenne</p>
+            <p><strong>Consommation :</strong> Élevée</p>
+            <p><strong>Avantages :</strong> Très flexible, grande communauté, nombreux modules.</p>
+            <p><strong>Inconvénients :</strong> Moins performant sous forte charge.</p>
+            <p><strong>Usage :</strong> Sites dynamiques, serveurs éducatifs et professionnels.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nginx -->
+      <div class="bg-slate-800 p-8 rounded-xl reveal">
+        <h3 class="text-2xl font-semibold mb-4">Nginx</h3>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <img src="assets/icons/nginx.svg"
+               alt="Nginx"
+               class="h-28 mx-auto transition duration-300 hover:scale-110 hover:drop-shadow-lg"
+               loading="lazy"
+               referrerpolicy="no-referrer">
+          <div class="text-slate-300 space-y-2">
+            <p><strong>Performance :</strong> Très élevée</p>
+            <p><strong>Consommation :</strong> Faible</p>
+            <p><strong>Avantages :</strong> Excellente gestion du trafic, reverse proxy efficace.</p>
+            <p><strong>Inconvénients :</strong> Configuration avancée moins intuitive.</p>
+            <p><strong>Usage :</strong> Sites à fort trafic, applications modernes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- NetWare -->
+      <div class="bg-slate-800 p-8 rounded-xl reveal">
+        <h3 class="text-2xl font-semibold mb-4">NetWare de Novell</h3>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <img src="assets/icons/novell.svg"
+               alt="NetWare"
+               class="h-28 mx-auto transition duration-300 hover:scale-110 hover:drop-shadow-lg"
+               loading="lazy"
+               referrerpolicy="no-referrer">
+          <div class="text-slate-300 space-y-2">
+            <p><strong>Performance :</strong> Moyenne</p>
+            <p><strong>Consommation :</strong> Moyenne</p>
+            <p><strong>Avantages :</strong> Intégré dans les réseaux Novell, bonne sécurité.</p>
+            <p><strong>Inconvénients :</strong> Moins utilisé aujourd'hui, dépendance à l'écosystème Novell.</p>
+            <p><strong>Usage :</strong> Réseaux d'entreprise Novell, serveurs de fichiers.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- IIS -->
+      <div class="bg-slate-800 p-8 rounded-xl reveal">
+        <h3 class="text-2xl font-semibold mb-4">
+          IIS (Internet Information Services)
+        </h3>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <img src="assets/icons/microsoft.svg"
+               alt="IIS (Microsoft)"
+               class="h-28 mx-auto transition duration-300 hover:scale-110 hover:drop-shadow-lg"
+               loading="lazy"
+               referrerpolicy="no-referrer">
+          <div class="text-slate-300 space-y-2">
+            <p><strong>Performance :</strong> Bonne</p>
+            <p><strong>Consommation :</strong> Moyenne</p>
+            <p><strong>Avantages :</strong> Intégration native avec Windows et .NET.</p>
+            <p><strong>Inconvénients :</strong> Dépendance à l’environnement Windows.</p>
+            <p><strong>Usage :</strong> Applications ASP.NET, infrastructures Microsoft.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GWS -->
+      <div class="bg-slate-800 p-8 rounded-xl reveal">
+        <h3 class="text-2xl font-semibold mb-4">Google Web Server (GWS)</h3>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <img src="assets/icons/google.svg"
+               alt="GWS"
+               class="h-28 mx-auto transition duration-300 hover:scale-110 hover:drop-shadow-lg"
+               loading="lazy"
+               referrerpolicy="no-referrer">
+          <div class="text-slate-300 space-y-2">
+            <p><strong>Performance :</strong> Excellente</p>
+            <p><strong>Consommation :</strong> Optimisée</p>
+            <p><strong>Avantages :</strong> Utilisé par Google, haute disponibilité et scalabilité.</p>
+            <p><strong>Inconvénients :</strong> Non open-source, peu d'informations publiques.</p>
+            <p><strong>Usage :</strong> Infrastructures Google, services web à grande échelle.</p>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="page">
+  <div class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-bold text-green-400 mb-6">Contact</h2>
+    <div class="grid md:grid-cols-2 gap-10 items-start">
+      <div class="space-y-4">
+        <p class="text-slate-300">
+          Besoin d’un accompagnement ou d’un audit rapide ? Envoyez un message.
+        </p>
+        <div class="bg-slate-800 p-6 rounded-xl space-y-2 reveal">
+          <p class="text-slate-300">Email : malickthiam626@gmail.com</p>
+          <p class="text-slate-400 text-sm">Agent :</p>
+        </div>
+      </div>
+
+      <form method="POST" class="bg-slate-800 p-8 rounded-xl space-y-4 reveal">
+        <div>
+          <label class="text-sm text-slate-300">Nom</label>
+          <input name="name" value=""
+                 class="mt-1 w-full rounded bg-slate-900 border border-slate-700 px-3 py-2"
+                 placeholder="Votre nom" required>
+        </div>
+        <div>
+          <label class="text-sm text-slate-300">Email</label>
+          <input type="email" name="email" value=""
+                 class="mt-1 w-full rounded bg-slate-900 border border-slate-700 px-3 py-2"
+                 placeholder="vous@exemple.com" required>
+        </div>
+        <div>
+          <label class="text-sm text-slate-300">Sujet</label>
+          <select name="topic"
+                  class="mt-1 w-full rounded bg-slate-900 border border-slate-700 px-3 py-2">
+            <option value="">Choisir</option>
+            <option value="apache" <?= $old['topic']==='apache'?'selected':'' ?>>Apache</option>
+            <option value="nginx" <?= $old['topic']==='nginx'?'selected':'' ?>>Nginx</option>
+            <option value="ssl" <?= $old['topic']==='ssl'?'selected':'' ?>>SSL</option>
+            <option value="audit" <?= $old['topic']==='audit'?'selected':'' ?>>Audit</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-sm text-slate-300">Message</label>
+          <textarea name="message" rows="4"
+                    class="mt-1 w-full rounded bg-slate-900 border border-slate-700 px-3 py-2"
+                    placeholder="Votre message" required></textarea>
+        </div>
+
+        <?php if ($formStatus): ?>
+          <div class="<?= $formStatus === 'success' ? 'text-green-400' : 'text-red-400' ?> text-sm">
+            
+          </div>
+        <?php endif; ?>
+
+        <button class="bg-green-500 text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-green-400 transition">
+          Envoyer
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-800 border-t border-slate-700 py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <p class="text-slate-400 text-sm">
+      © <?= $year ?> – Web Servers Presentation
+    </p>
+    <div class="space-x-4 text-xl">
+      <i class="fab fa-github"></i>
+      <i class="fab fa-linkedin"></i>
+      <i class="fab fa-twitter"></i>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showPage(id) {
+  const pages = document.querySelectorAll('.page');
+  const nav = document.querySelectorAll('[data-nav]');
+
+  pages.forEach(page => {
+    page.classList.remove('active');
+    page.style.display = "none";
+  });
+
+  nav.forEach(btn => btn.classList.remove('nav-active'));
+
+  const target = document.getElementById(id);
+  if (target) {
+    target.style.display = "block";
+    setTimeout(() => target.classList.add('active'), 50);
+  }
+
+  const activeBtn = document.querySelector(`[data-nav="${id}"]`);
+  if (activeBtn) activeBtn.classList.add('nav-active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* Afficher l’accueil au chargement */
+document.addEventListener("DOMContentLoaded", () => {
+  showPage('home');
+});
+
+/* Effet 3D léger sur l'image d'accueil */
+document.addEventListener("DOMContentLoaded", () => {
+  const wrap = document.getElementById('hero-tilt-wrap');
+  const hero = document.getElementById('hero-tilt');
+  if (!wrap || !hero) return;
+
+  hero.style.transformStyle = 'preserve-3d';
+  hero.style.willChange = 'transform';
+
+  const maxTilt = 10; // degrés
+
+  const onMove = (e) => {
+    const rect = wrap.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    const tiltX = (0.5 - y) * maxTilt;
+    const tiltY = (x - 0.5) * maxTilt;
+    hero.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
+  };
+
+  const reset = () => {
+    hero.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)';
+  };
+
+  wrap.addEventListener('pointermove', onMove);
+  wrap.addEventListener('pointerleave', reset);
+  wrap.addEventListener('pointerenter', reset);
+});
+
+/* Reveal on scroll */
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('show');
+    });
+  }, { threshold: 0.2 });
+
+  items.forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>
